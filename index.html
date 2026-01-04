@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Presentation: Second-hand Computer Marketplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+/* --- 1. CORE STYLES & RESET --- */
+* { box-sizing: border-box; }
+
+:root {
+    --bg-dark: #0f172a;
+    --card-bg: #1e293b;
+    --accent: #38bdf8;   /* Blue */
+    --success: #4ade80;  /* Green */
+    --warning: #fbbf24;  /* Amber */
+    --danger: #f87171;   /* Red */
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+}
+
+body {
+    background-color: var(--bg-dark);
+    margin: 0;
+    font-family: 'Prompt', sans-serif;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 40px;
+}
+
+/* --- 2. SLIDE CONTAINER (Responsive) --- */
+.presentation-wrapper {
+    width: 100%;
+    max-width: 1200px; /* Desktop Max Width */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.slide {
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    padding: 50px;
+    border: 1px solid #334155;
+    position: relative;
+    overflow: hidden;
+    min-height: 600px; /* Consistent Height */
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .slide { padding: 25px; min-height: auto; height: auto; }
+}
+
+/* --- 3. TYPOGRAPHY --- */
+h1, h2, h3, h4 { margin: 0; font-family: 'Urbanist', 'Prompt', sans-serif; }
+h1 { font-size: 42px; color: var(--accent); margin-bottom: 10px; line-height: 1.2; }
+h2 { font-size: 32px; border-bottom: 2px solid #334155; padding-bottom: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 15px; }
+p, li { font-size: 18px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 10px; }
+strong { color: var(--text-primary); font-weight: 500; }
+
+.badge {
+    background: #334155;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: var(--accent);
+    display: inline-block;
+}
+
+/* --- 4. LAYOUTS --- */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; height: 100%; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+@media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* --- 5. WIREFRAME UI COMPONENTS (Mockups) --- */
+.wireframe {
+    background: #0f172a;
+    border: 2px dashed #475569;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+.wf-header { height: 30px; background: #334155; border-radius: 6px; display: flex; align-items: center; padding: 0 10px; font-size: 10px; color: var(--text-secondary); }
+.wf-row { display: flex; gap: 10px; }
+.wf-col { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.wf-block { background: #1e293b; border: 1px solid #334155; border-radius: 6px; padding: 10px; }
+.wf-btn { padding: 6px 12px; border-radius: 4px; font-size: 10px; text-align: center; cursor: pointer; color: #000; font-weight: bold; }
+.btn-blue { background: var(--accent); }
+.btn-green { background: var(--success); }
+.btn-red { background: var(--danger); color: white; }
+
+/* Specific: Logic Charts */
+.logic-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.logic-label { width: 100px; font-size: 14px; text-align: right; color: var(--text-secondary); }
+.logic-fill { height: 20px; border-radius: 4px; color: #000; font-size: 10px; display: flex; align-items: center; padding-left: 5px; font-weight: bold; }
+
+/* Specific: Timeline */
+.timeline-item { display: flex; gap: 15px; margin-bottom: 20px; }
+.time-dot { width: 30px; height: 30px; border-radius: 50%; background: var(--card-bg); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--accent); flex-shrink: 0; }
+.time-content h4 { margin: 0; color: var(--text-primary); font-size: 16px; }
+.time-content p { margin: 0; font-size: 14px; }
+
+/* Slide Number */
+.slide-num { position: absolute; bottom: 20px; right: 20px; font-size: 14px; color: #475569; }
+
+    </style>
+</head>
+<body>
+
+<div class="presentation-wrapper">
+
+    <!-- Slide 1: Title -->
+    <div class="slide" style="justify-content: center; text-align: center;">
+        <div style="font-size: 60px; color: var(--accent); margin-bottom: 20px;"><i class="fa-solid fa-network-wired"></i></div>
+        <h1>ระบบตลาดกลางซื้อ-ขายคอมพิวเตอร์มือสอง<br><span style="color: var(--text-secondary); font-size: 0.6em;">พร้อมการประเมินความเสี่ยงสินค้า</span></h1>
+        <p style="font-size: 20px;">Second-hand Computer Marketplace with Risk Assessment System</p>
+        
+        <div style="margin-top: 40px; display: inline-block; text-align: left; background: #253346; padding: 20px 40px; border-radius: 12px;">
+            <p style="margin: 5px 0; color: var(--text-primary);"><strong>ผู้จัดทำ:</strong> นายกฤตัชญ์ บุษราคัมกุล & นายเถกิงกิจ ฤทธิโคหา</p>
+            <p style="margin: 5px 0; font-size: 16px;"><strong>ที่ปรึกษา:</strong> อ.ดร.จิตตภู พูลวัน และ อ.ตะวัน ขุนอาสา</p>
+        </div>
+        <div class="slide-num">1 / 11</div>
+    </div>
+
+    <!-- Slide 2: Pain Points -->
+    <div class="slide">
+        <h2><i class="fa-solid fa-triangle-exclamation"></i> ปัญหาในตลาดปัจจุบัน (Pain Points)</h2>
+        <div class="grid-2">
+            <div>
+                <p>ตลาดคอมพิวเตอร์มือสองเต็มไปด้วยความไม่แน่นอน (Imperfect Information)</p>
+                <ul style="margin-top: 20px; list-style: none; padding: 0;">
+                    <li>
+                        <h4 style="color: var(--danger); margin-bottom: 5px;"><i class="fa-solid fa-xmark"></i> ความเสี่ยงเรื่องการโกง</h4>
+                        <p style="font-size: 16px;">โอนแล้วหนี, ส่งของเสีย, สลับของ (Swap)</p>
+                    </li>
+                    <li style="margin-top: 20px;">
+                        <h4 style="color: var(--warning); margin-bottom: 5px;"><i class="fa-solid fa-xmark"></i> ดูสเปกไม่เป็น (Complexity)</h4>
+                        <p style="font-size: 16px;">ผู้ซื้อทั่วไปไม่รู้ว่า CPU นี้ใส่กับ Mainboard นี้ได้ไหม</p>
+                    </li>
+                    <li style="margin-top: 20px;">
+                        <h4 style="color: var(--text-secondary); margin-bottom: 5px;"><i class="fa-solid fa-xmark"></i> ตรวจสอบยาก</h4>
+                        <p style="font-size: 16px;">ซิลิโคนบัง S/N, รูปถ่ายไม่ชัดเจน</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="wireframe" style="align-items: center; justify-content: center; border-color: var(--danger);">
+                <i class="fa-solid fa-image" style="font-size: 50px; color: #475569; margin-bottom: 20px;"></i>
+                <div style="text-align: center; color: var(--danger);">
+                    <div>FAKE PROFILE</div>
+                    <div style="font-size: 12px; color: var(--text-secondary);">No Verification</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-num">2 / 11</div>
+    </div>
+
+    <!-- Slide 3: The Solution (Overview) -->
+    <div class="slide">
+        <h2><i class="fa-solid fa-shield-halved"></i> แนวคิดการแก้ปัญหา (The Solution)</h2>
+        <div class="grid-3" style="margin-top: 20px;">
+            <div style="background: #253346; padding: 25px; border-radius: 12px; border-top: 4px solid var(--success);">
+                <div style="font-size: 30px; color: var(--success); margin-bottom: 15px;"><i class="fa-solid fa-user-check"></i></div>
+                <h3>1. Trust Score</h3>
+                <p style="font-size: 14px; margin-top: 10px;">ระบบให้คะแนนความน่าเชื่อถือผู้ขาย คำนวณจากการยืนยันตัวตน (KYC) และประวัติการขาย</p>
+            </div>
+            <div style="background: #253346; padding: 25px; border-radius: 12px; border-top: 4px solid var(--accent);">
+                <div style="font-size: 30px; color: var(--accent); margin-bottom: 15px;"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                <h3>2. Escrow System</h3>
+                <p style="font-size: 14px; margin-top: 10px;">ระบบตัวกลางถือเงิน ป้องกันการโอนแล้วหนี เงินจะส่งต่อเมื่อผู้ซื้อได้รับของแล้ว</p>
+            </div>
+            <div style="background: #253346; padding: 25px; border-radius: 12px; border-top: 4px solid var(--warning);">
+                <div style="font-size: 30px; color: var(--warning); margin-bottom: 15px;"><i class="fa-solid fa-microchip"></i></div>
+                <h3>3. PC Builder</h3>
+                <p style="font-size: 14px; margin-top: 10px;">ระบบจัดสเปกจากสินค้าที่มีขายจริง พร้อมเช็คความเข้ากันได้ (Inventory-based)</p>
+            </div>
+        </div>
+        <div class="slide-num">3 / 11</div>
+    </div>
+
+    <!-- Slide 4: System 1 - Trust Score Logic -->
+    <div class="slide">
+        <h2><i class="fa-solid fa-chart-line"></i> System 1: Trust Score Logic</h2>
+        <div class="grid-2">
+            <div>
+                <p>อัลกอริทึมการให้คะแนนเครดิตแบบ Dynamic (เต็ม 100+)</p>
+                <div style="margin-top: 30px;">
+                    <div class="logic-bar">
+                        <div class="logic-label">KYC Verified</div>
+                        <div class="logic-fill" style="width: 50%; background: var(--success);">+50 (บัตร ปชช.)</div>
+                    </div>
+                    <div class="logic-bar">
+                        <div class="logic-label">Bank Linked</div>
+                        <div class="logic-fill" style="width: 30%; background: var(--accent);">+20 (บัญชีตรงชื่อ)</div>
+                    </div>
+                    <div class="logic-bar">
+                        <div class="logic-label">Sold Item</div>
+                        <div class="logic-fill" style="width: 15%; background: var(--warning);">+5 (ต่อรายการ)</div>
+                    </div>
+                    <div class="logic-bar">
+                        <div class="logic-label">Dispute Lost</div>
+                        <div class="logic-fill" style="width: 80%; background: var(--danger); color: white;">-50 (โกง/ผิดกฎ)</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Wireframe: Seller Profile -->
+            <div class="wireframe">
+                <div class="wf-header">Seller Profile View</div>
+                <div class="wf-row" style="align-items: center;">
+                    <div style="width: 50px; height: 50px; background: #475569; border-radius: 50%;"></div>
+                    <div>
+                        <div style="font-size: 14px; font-weight: bold;">Seller_XYZ</div>
+                        <div class="badge" style="background: var(--success); color: #000;">Verified Pro</div>
+                    </div>
+                </div>
+                <div class="wf-row">
+                    <div class="wf-block" style="flex:1; text-align: center;">
+                        <div style="color: var(--success); font-weight: bold; font-size: 18px;">95</div>
+                        <div style="font-size: 10px;">Trust Score</div>
+                    </div>
+                    <div class="wf-block" style="flex:1; text-align: center;">
+                        <div style="color: var(--accent); font-weight: bold; font-size: 18px;">42</div>
+                        <div style="font-size: 10px;">Sold</div>
+                    </div>
+                </div>
+                <div class="wf-block" style="flex:1; font-size: 10px;">
+                    <div>History:</div>
+                    <div style="margin-top: 5px; color: var(--text-secondary);">- Sold RTX 3060 (Success)</div>
+                    <div style="color: var(--text-secondary);">- Sold RAM 16GB (Success)</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-num">4 / 11</div>
+    </div>
+
+    <!-- Slide 5: System 2 - Escrow Flow -->
+    <div class="slide">
+        <h2><i class="fa-solid fa-money-bill-wave"></i> System 2: Escrow Flow (ระบบเงิน)</h2>
+        <div class="grid-2">
+            <!-- Flow Chart -->
+            <div>
+                <div class="timeline-item">
+                    <div class="time-dot">1</div>
+                    <div class="time-content">
+                        <h4>Buyer Pays</h4>
+                        <p>เงินถูกโอนเข้า "บัญชีกลาง" (Mock Payment)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time-dot">2</div>
+                    <div class="time-content">
+                        <h4>System Hold</h4>
+                        <p>สถานะเปลี่ยนเป็น <code>HELD_BY_SYSTEM</code> ผู้ขายเห็นยอดแต่ถอนไม่ได้</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time-dot">3</div>
+                    <div class="time-content">
+                        <h4>Inspection (3-7 Days)</h4>
+                        <p>ผู้ซื้อได้รับของ ถ่ายคลิปแกะกล่อง และตรวจสอบ</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time-dot">4</div>
+                    <div class="time-content">
+                        <h4>Release Fund</h4>
+                        <p>ผู้ซื้อกดยอมรับ -> ระบบโอนเงินให้ผู้ขาย (<code>COMPLETED</code>)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Wireframe: Order Status -->
+            <div class="wireframe">
+                <div class="wf-header">Buyer: Order Status #1024</div>
+                <div class="wf-block" style="text-align: center; padding: 20px;">
+                    <i class="fa-solid fa-box-open" style="font-size: 30px; color: var(--warning); margin-bottom: 10px;"></i>
+                    <div style="font-size: 14px; font-weight: bold;">Status: Inspecting</div>
+                    <div style="font-size: 10px; color: var(--text-secondary);">Auto-release in 48 hours</div>
+                </div>
+                <div class="wf-row">
+                    <div class="wf-btn btn-green" style="flex:1;">Confirm Receive (ปล่อยเงิน)</div>
+                    <div class="wf-btn btn-red" style="flex:1;">Report Issue (ระงับเงิน)</div>
+                </div>
+                <div class="wf-block" style="font-size: 10px;">
+                    <div>Tracking: KERRY - KER123456789</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-num">5 / 11</div>
+    </div>
+
+    <!-- Slide 6: System 3 - PC Builder -->
+    <div class="slide">
+        <h2><i class="fa-solid fa-screwdriver-wrench"></i> System 3: Inventory-based PC Builder</h2>
+        <div class="grid-2">
+            <div>
+                <p>ระบบจัดสเปกที่ดึงข้อมูลจาก <strong>สินค้าที่มีขายจริง</strong> (Real-time Inventory)</p>
+                <div style="background: #253346; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                    <h4 style="color: var(--accent); margin-bottom: 10px;">Compatibility Logic:</h4>
+                    <ul style="font-size: 16px; margin: 0;">
+                        <li><i class="fa-solid fa-check" style="color: var(--success);"></i> CPU Gen 12 -> Show only LGA1700 Boards</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--success);"></i> RAM DDR4 -> Hide DDR5 Slots</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--success);"></i> GPU Power -> Check PSU Wattage</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Wireframe: PC Builder -->
+            <div class="wireframe">
+                <div class="wf-header">Custom PC Builder</div>
+                <!-- CPU Slot -->
+                <div class="wf-block" style="display: flex; gap: 10px; align-items: center;">
+                    <div style="width: 30px; height: 30px; background: #475569; border-radius: 4px;"></div>
+                    <div style="flex: 1;">
+                        <div style="font-size: 12px; font-weight: bold;">i5-12400F</div>
+                        <div style="font-size: 10px; color: var(--success);">In Stock: ฿3,500</div>
+                    </div>
+                </div>
+                <!-- MB Slot (Filtered) -->
+                <div class="wf-block" style="display: flex; gap: 10px; align-items: center; border-color: var(--accent);">
+                    <div style="width: 30px; height: 30px; background: #475569; border-radius: 4px;"></div>
+                    <div style="flex: 1;">
+                        <div style="font-size: 12px; color: var(--accent);">Select Mainboard...</div>
+                        <div style="font-size: 8px; color: var(--text-secondary);">Filtered: LGA1700 Only</div>
+                    </div>
+                    <div class="wf-btn btn-blue">Add</div>
+                </div>
+                <div class="wf-block" style="text-align: right; font-weight: bold;">
+                    Total Estimate: ฿3,500
+                </div>
+            </div>
+        </div>
+        <div class="slide-num">6 / 11</div>
+    </div>
+
+    <!-- Slide 7: Seller Dashboard (KYC) -->
+    <div class="slide">
+        <h2><i class="fa-solid fa-store"></i> System 4: Seller Dashboard</h2>
+        <p>ระบบจัดการหลังบ้านสำหรับผู้ขาย เน้นความโปร่งใสและการยืนยันตัวตน</p>
+        <div class="grid-2">
+            <!-- Wireframe: KYC Upload -->
+            <div class="wireframe">
+                <div class="wf-header">KYC Center</div>
+                <div style="text-align: center; padding: 20px;">
+                    <i class="fa-solid fa-id-card" style="font-size: 40px; color: var(--text-secondary); margin-bottom: 10px;"></i>
+                    <div style="font-size: 12px;">Upload ID Card & Bank Book</div>
+                </div>
+                <div class="wf-row">
+                    <div class="wf-block" style="flex:1; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 10px;">ID Card.jpg</div>
+                    <div class="wf-block" style="flex:1; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 10px;">Bank.jpg</div>
+                </div>
+                <div class="wf-btn btn-blue">Submit for Verification</div>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <ul class="fa-ul" style="font-size: 18px;">
+                    <li><span class="fa-li"><i class="fa-solid fa-check-circle" style="color: var(--success);"></i></span><strong>Identity Verification:</strong> อัปโหลดเอกสารเพื่อปลดล็อก Trust Score</li>
+                    <li><span class="fa-li"><i class="fa-solid fa-check-circle" style="color: var(--success);"></i></span><strong>Manage Listings:</strong> บังคับลงรูปคู่กับป้ายชื่อ (Timestamp)</li>
+                    <li><span class="fa-li"><i class="fa-solid fa-check-circle" style="color: var(--success);"></i></span><strong>Wallet:</strong> ถอนเงินรายได้เมื่อสถานะ Order เป็น Completed</li>
+                </ul>
+            </div>
+        </div>
+        <div class="slide-num">7 / 11</div>
+    </div>
+
+    <!-- Slide 8: Admin Dashboard (Dispute) -->
+    <div class="slide">
+        <h2><i class="fa-solid fa-gavel"></i> System 5: Admin Dispute Center</h2>
+        <div class="grid-2">
+            <div>
+                <p>ระบบ "ศาลเตี้ย" สำหรับระงับข้อพิพาทเมื่อผู้ซื้อและผู้ขายตกลงกันไม่ได้</p>
+                <div style="background: #253346; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid var(--danger);">
+                    <h4>Dispute Logic:</h4>
+                    <p style="font-size: 14px;">เมื่อมี Case เข้ามา Admin จะดูหลักฐาน:</p>
+                    <ul style="font-size: 14px; margin-top: 5px;">
+                        <li>1. Unboxing Video (จากผู้ซื้อ)</li>
+                        <li>2. Packaging Video (จากผู้ขาย)</li>
+                        <li>3. Chat History</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Wireframe: Admin Panel -->
+            <div class="wireframe">
+                <div class="wf-header" style="background: var(--danger); color: white;">ADMIN: Dispute #999</div>
+                <div class="wf-block">
+                    <div style="font-size: 12px; font-weight: bold; color: var(--danger);">Reason: Item Broken / เปิดไม่ติด</div>
+                </div>
+                <div class="wf-row">
+                    <div class="wf-block" style="flex:1; height: 80px; background: black; color: white; display: flex; align-items: center; justify-content: center; font-size: 10px;">
+                        <i class="fa-solid fa-play"></i> Buyer Video
+                    </div>
+                </div>
+                <div class="wf-row">
+                    <div class="wf-btn btn-green" style="flex:1;">Refund Buyer (คืนเงิน)</div>
+                    <div class="wf-btn btn-blue" style="flex:1;">Release to Seller (ปล่อยเงิน)</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-num">8 / 11</div>
+    </div>
+
+    <!-- Slide 9: Tech Stack -->
+    <div class="slide">
+        <h2><i class="fa-solid fa-code"></i> เครื่องมือและเทคโนโลยี (Tech Stack)</h2>
+        <div class="grid-3">
+            <div style="text-align: center; padding: 20px; background: #253346; border-radius: 12px;">
+                <i class="fa-brands fa-react" style="font-size: 50px; color: var(--accent); margin-bottom: 15px;"></i>
+                <h3>Frontend</h3>
+                <p style="font-size: 16px;">Next.js / React</p>
+                <p style="font-size: 14px; color: var(--text-secondary);">Responsive Web Design</p>
+            </div>
+            <div style="text-align: center; padding: 20px; background: #253346; border-radius: 12px;">
+                <i class="fa-brands fa-node-js" style="font-size: 50px; color: var(--success); margin-bottom: 15px;"></i>
+                <h3>Backend</h3>
+                <p style="font-size: 16px;">Node.js (Express)</p>
+                <p style="font-size: 14px; color: var(--text-secondary);">RESTful API & Logic</p>
+            </div>
+            <div style="text-align: center; padding: 20px; background: #253346; border-radius: 12px;">
+                <i class="fa-solid fa-database" style="font-size: 50px; color: var(--warning); margin-bottom: 15px;"></i>
+                <h3>Database</h3>
+                <p style="font-size: 16px;">PostgreSQL / MySQL</p>
+                <p style="font-size: 14px; color: var(--text-secondary);">Relational Data</p>
+            </div>
+        </div>
+        <div class="slide-num">9 / 11</div>
+    </div>
+
+     <!-- Slide 10: Timeline -->
+     <div class="slide">
+        <h2><i class="fa-solid fa-calendar-days"></i> แผนการดำเนินงาน (Timeline)</h2>
+        <div style="display: flex; flex-direction: column; gap: 15px; max-width: 800px; width: 100%;">
+            
+            <div style="display: flex; gap: 20px; border-bottom: 1px solid #334155; padding-bottom: 15px;">
+                <div style="width: 150px; font-weight: bold; color: var(--success);">พ.ย. - ธ.ค. 68</div>
+                <div>
+                    <strong>Planning & Analysis</strong>
+                    <div style="font-size: 14px; color: var(--text-secondary);">ศึกษาทฤษฎี, เสนอหัวข้อ, ออกแบบ Database</div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 20px; border-bottom: 1px solid #334155; padding-bottom: 15px;">
+                <div style="width: 150px; font-weight: bold; color: var(--warning);">ม.ค. - มี.ค. 69</div>
+                <div>
+                    <strong>Development (Phase 1)</strong>
+                    <div style="font-size: 14px; color: var(--text-secondary);">พัฒนาระบบสมัครสมาชิก, Trust Score Logic, และ Escrow System</div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 20px; border-bottom: 1px solid #334155; padding-bottom: 15px;">
+                <div style="width: 150px; font-weight: bold; color: var(--accent);">เม.ย. - พ.ค. 69</div>
+                <div>
+                    <strong>Development (Phase 2) & Testing</strong>
+                    <div style="font-size: 14px; color: var(--text-secondary);">พัฒนาระบบ PC Builder, Admin Dashboard, ทดสอบระบบ (UAT)</div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 20px;">
+                <div style="width: 150px; font-weight: bold; color: #a78bfa;">มิ.ย. - ก.ย. 69</div>
+                <div>
+                    <strong>Documentation & Presentation</strong>
+                    <div style="font-size: 14px; color: var(--text-secondary);">จัดทำเล่มโครงงาน, คู่มือการใช้งาน, นำเสนอจบการศึกษา</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="slide-num">10 / 11</div>
+    </div>
+
+    <!-- Slide 11: Conclusion -->
+    <div class="slide" style="justify-content: center; text-align: center;">
+        <h2>บทสรุป (Conclusion)</h2>
+        <p style="font-size: 24px; max-width: 800px; margin: 0 auto;">
+            "แพลตฟอร์มนี้ไม่ได้เป็นเพียงตลาดซื้อขาย แต่เป็น <strong>Ecosystem ที่ปลอดภัย</strong><br>
+            ด้วยการใช้เทคโนโลยี <strong>Trust Score</strong> และ <strong>Escrow</strong><br>
+            เพื่อแก้ปัญหาความไม่เชื่อมั่นในตลาดสินค้าไอทีมือสองอย่างยั่งยืน"
+        </p>
+        <div style="margin-top: 60px;">
+            <h1 style="font-size: 60px;">Q & A</h1>
+            <p>ขอบคุณครับ</p>
+        </div>
+        <div class="slide-num">11 / 11</div>
+    </div>
+
+</div>
+
+</body>
+</html>
